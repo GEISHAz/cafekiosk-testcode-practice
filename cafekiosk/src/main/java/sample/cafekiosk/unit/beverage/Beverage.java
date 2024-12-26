@@ -1,4 +1,4 @@
-package sample.cafekiosk.spring.unit;
+package sample.cafekiosk.unit.beverage;
 
 public interface Beverage {
     String getName();

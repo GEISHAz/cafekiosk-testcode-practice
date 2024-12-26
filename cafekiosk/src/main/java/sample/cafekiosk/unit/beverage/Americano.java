@@ -1,6 +1,8 @@
-package sample.cafekiosk.spring.unit;
+package sample.cafekiosk.unit.beverage;
 
-public class Americano implements Beverage{
+import sample.cafekiosk.unit.beverage.Beverage;
+
+public class Americano implements Beverage {
 
     @Override
     public String getName() {

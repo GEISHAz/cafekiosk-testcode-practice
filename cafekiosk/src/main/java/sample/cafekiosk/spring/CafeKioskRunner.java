@@ -1,4 +1,7 @@
-package sample.cafekiosk.spring.unit;
+package sample.cafekiosk.spring;
+
+import sample.cafekiosk.unit.beverage.Americano;
+import sample.cafekiosk.unit.beverage.Latte;
 
 public class CafeKioskRunner {
     public static void main(String[] args) {

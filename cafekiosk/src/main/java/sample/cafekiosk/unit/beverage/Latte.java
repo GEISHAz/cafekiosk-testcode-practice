@@ -1,6 +1,6 @@
-package sample.cafekiosk.spring.unit;
+package sample.cafekiosk.unit.beverage;
 
-import javax.swing.border.BevelBorder;
+import sample.cafekiosk.unit.beverage.Beverage;
 
 public class Latte implements Beverage {
     @Override

@@ -5,9 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Example;
 import org.springframework.test.context.ActiveProfiles;
-import sample.cafekiosk.spring.api.controller.product.dto.request.ProductCreateReqeust;
+import sample.cafekiosk.spring.api.controller.product.dto.request.ProductCreateRequest;
 import sample.cafekiosk.spring.domain.product.Product;
 import sample.cafekiosk.spring.domain.product.ProductRepository;
 import sample.cafekiosk.spring.domain.product.ProductSellingStatus;
@@ -20,7 +19,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
 import static sample.cafekiosk.spring.domain.product.ProductSellingStatus.*;
-import static sample.cafekiosk.spring.domain.product.ProductType.BAKERY;
 import static sample.cafekiosk.spring.domain.product.ProductType.HANDMADE;
 
 @ActiveProfiles("test")
@@ -45,14 +43,14 @@ public class ProductServiceTest {
         Product product1 = createProduct("001", HANDMADE,SELLING,"아메리카노",4000);
         productRepository.save(product1);
 
-        ProductCreateReqeust request = ProductCreateReqeust.builder()
+        ProductCreateRequest request = ProductCreateRequest.builder()
                 .name("카푸치노")
                 .sellingStatus(SELLING)
                 .type(HANDMADE)
                 .price(5000)
                 .build();
         // when
-        ProductResponse productResponse = productService.createProduct(request);
+        ProductResponse productResponse = productService.createProduct(request.toServiceRequest());
 
         // then
         assertThat(productResponse)
@@ -72,14 +70,14 @@ public class ProductServiceTest {
     @Test
     void createProductWhenProductIsEmpty(){
         // given
-        ProductCreateReqeust request = ProductCreateReqeust.builder()
+        ProductCreateRequest request = ProductCreateRequest.builder()
                 .name("카푸치노")
                 .sellingStatus(SELLING)
                 .type(HANDMADE)
                 .price(5000)
                 .build();
         // when
-        ProductResponse productResponse = productService.createProduct(request);
+        ProductResponse productResponse = productService.createProduct(request.toServiceRequest());
 
         // then
         List<Product> products = productRepository.findAll();

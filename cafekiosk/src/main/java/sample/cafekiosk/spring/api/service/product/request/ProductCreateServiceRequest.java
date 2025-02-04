@@ -1,7 +1,5 @@
-package sample.cafekiosk.spring.api.controller.product.dto.request;
+package sample.cafekiosk.spring.api.service.product.request;
 
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,22 +9,25 @@ import sample.cafekiosk.spring.domain.product.ProductType;
 
 @Getter
 @NoArgsConstructor
-public class ProductCreateReqeust {
+public class ProductCreateServiceRequest {
 
     private ProductType type;
+
     private ProductSellingStatus sellingStatus;
+
     private String name;
+
     private int price;
 
     @Builder
-    private ProductCreateReqeust(ProductType type, ProductSellingStatus sellingStatus, String name, int price) {
+    private ProductCreateServiceRequest(ProductType type, ProductSellingStatus sellingStatus, String name, int price) {
         this.type = type;
         this.sellingStatus = sellingStatus;
         this.name = name;
         this.price = price;
     }
 
-    public Product toEntity(ProductCreateReqeust request,String nextProductNumber) {
+    public Product toEntity(ProductCreateServiceRequest request, String nextProductNumber) {
         return Product.builder()
                 .name(request.getName())
                 .productNumber(nextProductNumber)
